@@ -67,8 +67,8 @@ objects:
           app: "${LABEL}"
           deploymentconfig: "${NAME}"
       spec:
-        securityContext:
-          runAsUser: 1000
+#        securityContext:
+#          runAsUser: 1000
         containers:
         - image: " "
           name: "${NAME}"
