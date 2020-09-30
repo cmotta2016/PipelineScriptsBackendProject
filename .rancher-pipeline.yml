@@ -14,7 +14,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: ranche-nodejs
+      tag: cmotta2016/ranche-nodejs
       pushRemote: true
       registry: index.docker.io
 - name: Deploy
