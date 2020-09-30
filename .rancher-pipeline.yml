@@ -1,0 +1,25 @@
+stages:
+- name: Compile
+  steps:
+  - runScriptConfig:
+      image: node:latest
+      shellScript: npm install
+- name: Test
+  steps:
+  - runScriptConfig:
+      image: node:latest
+      shellScript: npm test
+- name: Build Image
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: ranche-nodejs
+      pushRemote: true
+      registry: index.docker.io
+- name: Deploy
+  steps:
+  - applyYamlConfig:
+      path: ./rke-pipeline.yaml
+timeout: 60
+notification: {}
