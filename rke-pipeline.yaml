@@ -85,27 +85,27 @@ spec:
         successThreshold: 1
         failureThreshold: 3
 ---
-apiVersion: autoscaling/v2beta2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: nodejs
-  namespace: nodejs
-  labels:
-    app: nodejs
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: nodejs
-  minReplicas: 1
-  maxReplicas: 2
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target: 
-        type: Utilization
-        averageUtilization: 90
+#apiVersion: autoscaling/v2beta2
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: nodejs
+#  namespace: nodejs
+#  labels:
+#    app: nodejs
+#spec:
+#  scaleTargetRef:
+#    apiVersion: apps/v1
+#    kind: Deployment
+#    name: nodejs
+#  minReplicas: 1
+#  maxReplicas: 2
+#  metrics:
+#  - type: Resource
+#    resource:
+#      name: cpu
+#      target: 
+#        type: Utilization
+#        averageUtilization: 90
 #---
 #apiVersion: autoscaling.k8s.io/v1
 #kind: VerticalPodAutoscaler
