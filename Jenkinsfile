@@ -70,6 +70,8 @@ timestamps{
 		            openshift.tag("${NAME}:latest", "${REPOSITORY}/${NAME}:latest")
                 }//stage
                 stage('Deploy QA') {
+		    echo "Creating ConfigMap for npmrc"
+		    def configmap = openshift.apply(openshift.raw("create configmap --from-file=npmrc --dry-run --output=yaml").actions[0].out)
                     echo "Criando Deployment"
                     openshift.apply(openshift.process(readFile(file:"${TEMPLATE}-qa.yml"), "--param-file=template_environments_qa"))
                     openshift.selector("dc", "${NAME}").rollout().latest()
