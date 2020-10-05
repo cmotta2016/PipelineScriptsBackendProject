@@ -52,9 +52,11 @@ timestamps{
             openshift.withProject("${PROJECT}-qa") {
                 stage('Build'){
                     if (!openshift.selector("bc", "${NAME}").exists()) {
+			echo "Creating ConfigMap for npmrc"
+		        def configmap = openshift.apply(openshift.raw("create configmap npmrc-nexus --from-file=npmrc --dry-run --output=yaml").actions[0].out)
                         echo "Criando build"
                         //def nb = openshift.newBuild(".", "--strategy=source", "--image-stream=${IMAGE_BUILDER}", "--allow-missing-images", "--name=${NAME}", "-l app=${LABEL}")
-                        def nb = openshift.newBuild("--name=${NAME}", "--image-stream=${IMAGE_BUILDER}", "--binary", "-l app=${NAME}", "--build-config-map npmrc:.")
+                        def nb = openshift.newBuild("--name=${NAME}", "--image-stream=${IMAGE_BUILDER}", "--binary", "-l app=${NAME}", "--build-config-map npmrc-nexus:.")
                         def buildSelector = nb.narrow("bc").related("builds")
                         buildSelector.logs('-f')
                         def build = openshift.selector("bc", "${NAME}").startBuild("--from-archive=teste-build.tgz")
@@ -70,8 +72,6 @@ timestamps{
 		            openshift.tag("${NAME}:latest", "${REPOSITORY}/${NAME}:latest")
                 }//stage
                 stage('Deploy QA') {
-		    echo "Creating ConfigMap for npmrc"
-		    def configmap = openshift.apply(openshift.raw("create configmap --from-file=npmrc --dry-run --output=yaml").actions[0].out)
                     echo "Criando Deployment"
                     openshift.apply(openshift.process(readFile(file:"${TEMPLATE}-qa.yml"), "--param-file=template_environments_qa"))
                     openshift.selector("dc", "${NAME}").rollout().latest()
