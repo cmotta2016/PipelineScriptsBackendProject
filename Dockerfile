@@ -1,4 +1,4 @@
-FROM docker.apps.openshift.oracle.msdigital.pro/node:8
+FROM node:8
 
 WORKDIR /usr/src/app
 
