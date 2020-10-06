@@ -91,10 +91,10 @@ objects:
           name: "${NAME}"
           resources:
             limits:
-              cpu: 250m
+              cpu: 500m
               memory: 2Gi
             requests:
-              cpu: 250m
+              cpu: 500m
               memory: 1Gi
           ports:
             - containerPort: 3000
@@ -204,10 +204,10 @@ objects:
           name: "${NAME}"
           resources:
             limits:
-              cpu: 250m
+              cpu: 500m
               memory: 2Gi
             requests:
-              cpu: 250m
+              cpu: 500m
               memory: 1Gi
           ports:
             - containerPort: 3000
