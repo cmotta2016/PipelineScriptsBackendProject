@@ -74,7 +74,7 @@ objects:
           name: "${NAME}:blue"
           namespace: "${REPOSITORY}"
     - type: ConfigChange
-    replicas: 2
+    replicas: 1
     selector:
       app: "${NAME}"
       deploymentconfig: "${NAME}"
@@ -187,7 +187,7 @@ objects:
           name: "${NAME}:green"
           namespace: "${REPOSITORY}"
     - type: ConfigChange
-    replicas: 2
+    replicas: 1
     selector:
       app: "${NAME}"
       deploymentconfig: "${NAME}"
