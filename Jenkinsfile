@@ -42,7 +42,7 @@ timestamps{
                     openshift.raw("set route-backends ${NAME} ${NAME}-${tag}=100 ${NAME}-${altTag}=0 --loglevel=4").out
                 }//stage
 		stage('Reduzindo HPA') {
-		     openshift.raw("patch hpa ${NAME}-${altTag} --type='json' -p='[{"op": "replace", "path": "/spec/minReplicas", "value":"1"}]'").out
+		     openshift.raw("""patch hpa ${NAME}-${altTag} --type='json' -p='[{"op": "replace", "path": "/spec/minReplicas", "value":"1"}]'""").out
 		}//stage
             }//withProject
         }//withCluster
