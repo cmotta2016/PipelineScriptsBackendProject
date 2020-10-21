@@ -68,9 +68,9 @@
                         build.logs('-f')
                     }//else
                 }//stage
-                /*stage('Tagging Image'){
+                stage('Tagging Image'){
 		            openshift.tag("${NAME}:latest", "${REPOSITORY}/${NAME}:latest")
-                }//stage*/
+                }//stage
                 stage('Deploy QA') {
                     echo "Criando Deployment"
                     openshift.apply(openshift.process(readFile(file:"${TEMPLATE}-qa.yml"), "--param-file=template_environments_qa"))
