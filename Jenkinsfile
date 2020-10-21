@@ -1,4 +1,4 @@
-timestamps{
+//timestamps{
     node('nodejs'){
         stage('Checkout'){
             //checkout([$class: 'GitSCM', branches: [[name: '*/openshift']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/cmotta2016/PipelineScriptsBackendProject.git']]])
@@ -10,10 +10,10 @@ timestamps{
             sh 'rm -rf teste-build.tgz > /dev/null 2>&1'
             sh 'tar czvf teste-build.tgz * --exclude node_modules'
         }
-        stage('Test'){
+        /*stage('Test'){
 	    sh 'rm -rf /tmp/workspace/Openshift/Nodejs/report/*'
             sh 'npm test'
-        }
+        }*/
         stage ('Code Quality'){
             def sonar = load 'sonar.groovy'
             sonar.codeQuality()
@@ -27,12 +27,12 @@ timestamps{
                 }
             }
         }
-        stage('Dependency Check'){
+        /*stage('Dependency Check'){
            sh 'oc create -f depcheck_job_scan.yaml'
            sh 'sleep 10'
            sh 'oc logs -f job/node-backend-v1-depcheck'
            sh 'oc delete -f depcheck_job_scan.yaml'
-        }
+        }*/
         openshift.withCluster() {
             /*openshift.withProject("cicd") {
               stage('Dependency Check'){
@@ -95,4 +95,4 @@ timestamps{
             }//withProject
         }//withCluster
     }//node
-}//timestamps
+//}//timestamps
