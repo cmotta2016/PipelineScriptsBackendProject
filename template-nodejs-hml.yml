@@ -108,13 +108,13 @@ objects:
       environment: "hml"
     name: "${NAME}"
   spec:
-    maxReplicas: 10
-    minReplicas: 2
+    maxReplicas: 3
+    minReplicas: 1
     scaleTargetRef:
       apiVersion: v1
       kind: DeploymentConfig
       name: "${NAME}"
-    targetCPUUtilizationPercentage: 80
+    targetCPUUtilizationPercentage: 50
 parameters:
 - name: NAME
   displayName: Name
