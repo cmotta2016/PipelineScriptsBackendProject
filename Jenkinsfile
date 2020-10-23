@@ -10,11 +10,11 @@
             sh 'rm -rf teste-build.tgz > /dev/null 2>&1'
             sh 'tar czvf teste-build.tgz * --exclude node_modules'
         }
-        /*stage('Test'){
+        stage('Test'){
 	    sh 'rm -rf /tmp/workspace/Openshift/Nodejs/report/*'
             sh 'npm test'
-        }*/
-        /*stage ('Code Quality'){
+        }
+        stage ('Code Quality'){
             def sonar = load 'sonar.groovy'
             sonar.codeQuality()
         }
@@ -26,7 +26,7 @@
                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 }
             }
-        }*/
+        }
         /*stage('Dependency Check'){
            sh 'oc create -f depcheck_job_scan.yaml'
            sh 'sleep 10'
