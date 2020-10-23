@@ -74,7 +74,7 @@ objects:
           name: "${NAME}:blue"
           namespace: "${REPOSITORY}"
     - type: ConfigChange
-    replicas: 2
+    replicas: 1
     selector:
       app: "${NAME}"
       deploymentconfig: "${NAME}"
@@ -91,11 +91,11 @@ objects:
           name: "${NAME}"
           resources:
             limits:
-              cpu: 250m
-              memory: 2Gi
-            requests:
-              cpu: 250m
+              cpu: 1
               memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 512Mi
           ports:
             - containerPort: 3000
               protocol: TCP
@@ -126,13 +126,13 @@ objects:
       app: "${LABEL}"
     name: ${NAME}-blue
   spec:
-    maxReplicas: 10
-    minReplicas: 3
+    maxReplicas: 3
+    minReplicas: 1
     scaleTargetRef:
       apiVersion: v1
       kind: DeploymentConfig
       name: "${NAME}-blue"
-    targetCPUUtilizationPercentage: 80
+    targetCPUUtilizationPercentage: 50
 ### Green Objects
 - apiVersion: v1
   kind: Service
@@ -187,7 +187,7 @@ objects:
           name: "${NAME}:green"
           namespace: "${REPOSITORY}"
     - type: ConfigChange
-    replicas: 2
+    replicas: 1
     selector:
       app: "${NAME}"
       deploymentconfig: "${NAME}"
@@ -204,11 +204,11 @@ objects:
           name: "${NAME}"
           resources:
             limits:
-              cpu: 250m
-              memory: 2Gi
-            requests:
-              cpu: 250m
+              cpu: 1
               memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 512Mi
           ports:
             - containerPort: 3000
               protocol: TCP
@@ -239,13 +239,13 @@ objects:
       app: "${LABEL}"
     name: ${NAME}-green
   spec:
-    maxReplicas: 10
-    minReplicas: 3
+    maxReplicas: 3
+    minReplicas: 1
     scaleTargetRef:
       apiVersion: v1
       kind: DeploymentConfig
       name: "${NAME}-green"
-    targetCPUUtilizationPercentage: 80
+    targetCPUUtilizationPercentage: 50
 parameters:
 - name: NAME
   displayName: Name
