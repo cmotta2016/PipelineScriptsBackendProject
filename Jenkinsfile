@@ -1,4 +1,4 @@
-timestamps{
+//timestamps{
     def tag="blue"
     def altTag="green"
     def routeHost="${tag}-${NAME}-${PROJECT}-prd.apps.openshift.oracle.msdigital.pro"
@@ -47,4 +47,4 @@ timestamps{
             }//withProject
         }//withCluster
     }//node
-}//timestamp
+//}//timestamp
