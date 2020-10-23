@@ -74,11 +74,11 @@ objects:
           name: "${NAME}"
           resources:
             limits:
-              cpu: '2'
-              memory: 2Gi
+              cpu: '1'
+              memory: 1Gi
             requests:
               cpu: 100m
-              memory: 1Gi
+              memory: 512Mi
           ports:
             - containerPort: 3000
               protocol: TCP
