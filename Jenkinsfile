@@ -1,7 +1,7 @@
 //timestamps{
     def tag="blue"
     def altTag="green"
-    def routeHost="${tag}-${NAME}-${PROJECT}-prd.apps.openshift.oracle.msdigital.pro"
+    def routeHost="${tag}-${NAME}-${PROJECT}-prd.apps.openshiftdig.rhv.msdigital.pro"
     node('nodejs'){
         stage('Checkout'){
            //checkout([$class: 'GitSCM', branches: [[name: '*/blue-green']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/cmotta2016/gs-spring-boot.git']]])
@@ -41,9 +41,9 @@
                 stage("Go Live") {
                     openshift.raw("set route-backends ${NAME} ${NAME}-${tag}=100 ${NAME}-${altTag}=0 --loglevel=4").out
                 }//stage
-		stage('Reduzindo HPA') {
+		/*stage('Reduzindo HPA') {
 		     openshift.raw("""patch hpa ${NAME}-${altTag} --type='json' -p='[{"op": "replace", "path": "/spec/minReplicas", "value":"1"}]'""").out
-		}//stage
+		}//stage*/
             }//withProject
         }//withCluster
     }//node
