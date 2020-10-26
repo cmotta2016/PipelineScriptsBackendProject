@@ -135,7 +135,7 @@ objects:
         name: cpu 
         target:
           type: Utilization 
-          averageValue: 500Mi 
+          averageValue: 500m 
 parameters:
 - name: NAME
   displayName: Name
