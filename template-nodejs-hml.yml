@@ -100,21 +100,42 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
-- apiVersion: autoscaling/v1
+#- apiVersion: autoscaling/v1
+#  kind: HorizontalPodAutoscaler
+#  metadata:
+#    labels:
+#      app: "${LABEL}"
+#      environment: "hml"
+#    name: "${NAME}"
+#  spec:
+#    maxReplicas: 3
+#    minReplicas: 1
+#    scaleTargetRef:
+#      apiVersion: v1
+#      kind: DeploymentConfig
+#      name: "${NAME}"
+#    targetCPUUtilizationPercentage: 50
+- apiVersion: autoscaling/v2beta2 
   kind: HorizontalPodAutoscaler
   metadata:
+    name: "${NAME}"
     labels:
       app: "${LABEL}"
       environment: "hml"
-    name: "${NAME}"
   spec:
-    maxReplicas: 3
-    minReplicas: 1
     scaleTargetRef:
-      apiVersion: v1
+      apiVersion: v1 
       kind: DeploymentConfig
       name: "${NAME}"
-    targetCPUUtilizationPercentage: 50
+    minReplicas: 1 
+    maxReplicas: 3
+    metrics: 
+    - type: Resource
+      resource:
+        name: cpu 
+        target:
+          type: Utilization 
+          averageValue: 500Mi 
 parameters:
 - name: NAME
   displayName: Name
