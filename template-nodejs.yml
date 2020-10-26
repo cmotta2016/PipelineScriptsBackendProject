@@ -126,13 +126,13 @@ objects:
       app: "${LABEL}"
     name: ${NAME}-blue
   spec:
-    maxReplicas: 3
-    minReplicas: 1
+    maxReplicas: 8
+    minReplicas: 4
     scaleTargetRef:
       apiVersion: v1
       kind: DeploymentConfig
       name: "${NAME}-blue"
-    targetCPUUtilizationPercentage: 50
+    targetCPUUtilizationPercentage: 80
 ### Green Objects
 - apiVersion: v1
   kind: Service
@@ -239,13 +239,13 @@ objects:
       app: "${LABEL}"
     name: ${NAME}-green
   spec:
-    maxReplicas: 3
-    minReplicas: 1
+    maxReplicas: 8
+    minReplicas: 4
     scaleTargetRef:
       apiVersion: v1
       kind: DeploymentConfig
       name: "${NAME}-green"
-    targetCPUUtilizationPercentage: 50
+    targetCPUUtilizationPercentage: 80
 parameters:
 - name: NAME
   displayName: Name
