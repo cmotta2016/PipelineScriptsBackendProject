@@ -12,6 +12,7 @@ objects:
       app: "${LABEL}"
     name: "${NAME}"
   spec:
+    host: ${NAME}.apps.openshift.oracle.msdigital.pro
     port:
       targetPort: web
     tls:
