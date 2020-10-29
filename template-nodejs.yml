@@ -13,6 +13,7 @@ objects:
       name: "principal"
     name: ${NAME}
   spec:
+    host: ${NAME}.apps.openshift.oracle.msdigital.pro
     alternateBackends:
     - name: ${NAME}-green
       weight: 0
