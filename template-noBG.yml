@@ -119,3 +119,15 @@ objects:
       kind: DeploymentConfig
       name: "${NAME}"
     targetCPUUtilizationPercentage: 80
+parameters:
+- name: NAME
+  displayName: Name
+  description: The name assigned to all of the frontend objects defined in this template.
+  required: true
+- name: LABEL
+  displayName: App label
+  required: true
+  #value: marketing-management-v1
+- name: REPOSITORY
+  displayName: Repository of app image
+  required: true
