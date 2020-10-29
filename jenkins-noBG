@@ -1,0 +1,19 @@
+//timestamps{
+    node('nodejs'){
+        stage('Checkout'){
+            //checkout([$class: 'GitSCM', branches: [[name: '*/openshift']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/cmotta2016/PipelineScriptsBackendProject.git']]])
+            checkout scm
+        }
+        openshift.withCluster() {
+            openshift.withProject("${PROJECT}-prd") {
+                stage('Deploy HML') {
+                    echo "Criando Deployment"
+                    openshift.apply(openshift.process(readFile(file:"${TEMPLATE}.yml"), "--param-file=template_environments"))
+                    openshift.selector("dc", "${NAME}").rollout().latest()
+                    def dc = openshift.selector("dc", "${NAME}")
+                    dc.rollout().status()
+                }//stage
+            }//withProject
+        }//withCluster
+    }//node
+//}//timestamps
