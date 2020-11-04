@@ -1,2 +1,3 @@
-registry=http://cicdtools.oracle.msdigital.pro:8081/repository/npm-group 
+registry=https://oinexus.intranet/repository/npm-group 
 #loglevel=silly
+strict-ssl=false
