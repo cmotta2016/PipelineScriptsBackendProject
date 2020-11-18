@@ -1,11 +1,11 @@
 //timestamps{
-    node('nodejs'){
+    node('nodejs-oc'){
         stage('Checkout'){
             //checkout([$class: 'GitSCM', branches: [[name: '*/openshift']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/cmotta2016/PipelineScriptsBackendProject.git']]])
             checkout scm
         }
         stage('Compile'){
-            sh 'npm set registry http://cicdtools.oracle.msdigital.pro:8081/repository/npm-group'
+            sh 'npm set registry https://oinexus.intranet/repository/npm-group/'
             sh 'npm install'
             sh 'rm -rf teste-build.tgz > /dev/null 2>&1'
             sh 'tar czvf teste-build.tgz * --exclude node_modules'
