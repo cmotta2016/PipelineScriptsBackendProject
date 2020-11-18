@@ -54,7 +54,7 @@
                 stage('Build'){
                     if (!openshift.selector("bc", "${NAME}").exists()) {
 			echo "Creating ConfigMap for npmrc"
-		        def configmap = openshift.apply(openshift.raw("create configmap npmrc-nexus --from-file=npmrc --dry-run --output=yaml").actions[0].out)
+		        def configmap = openshift.apply(openshift.raw("create configmap npmrc-nexus --from-file=.npmrc=npmrc --dry-run --output=yaml").actions[0].out)
                         echo "Criando build"
                         //def nb = openshift.newBuild(".", "--strategy=source", "--image-stream=${IMAGE_BUILDER}", "--allow-missing-images", "--name=${NAME}", "-l app=${LABEL}")
                         def nb = openshift.newBuild("--name=${NAME}", "--image-stream=${IMAGE_BUILDER}", "--binary", "-l app=${NAME}", "--build-config-map npmrc-nexus:.")
