@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: node-backend-v1-depcheck
+spec:
+  template:
+    spec:
+      volumes:
+        - name: workspace
+          persistentVolumeClaim:
+            claimName: pv-cache-nodejs
+        - name: dependency-data-dir
+          persistentVolumeClaim:
+            claimName: pvc-teste-nodejs
+      restartPolicy: Never
+      containers:
+      - args:
+          - '--scan'
+          - '/src/Devops/TesteCarlos/Teste_NodeJS_Openshift'
+          - '--format'
+          - 'ALL'
+          - '--project'
+          - 'dependency-check scan: /src/Devops/TesteCarlos/Teste_NodeJS_Openshift'
+          - '--out'
+          -  '/src/Devops/TesteCarlos/Teste_NodeJS_Openshift/report'
+          - '--noupdate'
+        image: "docker-registry.default.svc:5000/imagens-digital/dependency-check@sha256:ca73b12ee7ed5db24e007229ed8d9fd145f236b686612aa260b873487ba9c375"
+        name: node-backend-v1-depcheck
+        volumeMounts:
+          - mountPath: /src
+            name: workspace
+          - mountPath: /usr/share/dependency-check/data
+            name: dependency-data-dir
+      serviceAccount: "jenkins"
+  backoffLimit: 3
