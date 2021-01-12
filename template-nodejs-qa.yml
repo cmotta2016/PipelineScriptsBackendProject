@@ -111,3 +111,6 @@ parameters:
   displayName: App label
   required: true
   #value: marketing-management-v1
+- name: REPOSITORY
+  displayName: Repository of app image
+  required: true
