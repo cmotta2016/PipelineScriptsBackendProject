@@ -8,7 +8,8 @@
             sh 'npm set registry http://cicdtools.oracle.msdigital.pro:8081/repository/npm-group'
             sh 'npm install'
             sh 'rm -rf teste-build.tgz > /dev/null 2>&1'
-            sh 'tar czvf teste-build.tgz * --exclude node_modules'
+            //sh 'tar czvf teste-build.tgz * --exclude node_modules'
+            sh 'tar czvf teste-build.tgz *'
         }
         stage('Test'){
 	    sh 'rm -rf /tmp/workspace/Openshift/Nodejs/report/*'
@@ -27,12 +28,12 @@
                 }
             }
         }*/
-        stage('Dependency Check'){
+        /*stage('Dependency Check'){
            sh 'oc create -f depcheck_job_scan.yaml'
            sh 'sleep 10'
            sh 'oc logs -f job/node-backend-v1-depcheck'
            sh 'oc delete -f depcheck_job_scan.yaml'
-        }
+        }*/
         openshift.withCluster() {
             /*openshift.withProject("cicd") {
               stage('Dependency Check'){
