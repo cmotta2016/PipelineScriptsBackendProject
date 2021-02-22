@@ -10,6 +10,7 @@
 	    sh 'npm set strict-ssl false'
             sh 'npm install'
             sh 'rm -rf teste-build.tgz > /dev/null 2>&1'
+	    sh 'rm -rf node_modules > /dev/null 2>&1'
             //sh 'tar czvf teste-build.tgz * --exclude node_modules'
             sh 'tar czvf teste-build.tgz *'
         }
