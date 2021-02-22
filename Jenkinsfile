@@ -7,7 +7,7 @@
         stage('Compile'){
             //sh 'npm set registry http://cicdtools.oracle.msdigital.pro:8081/repository/npm-group'
 	    sh 'npm set registry https://nexus.apps.openshiftdig.rhv.msdigital.pro/repository/npm-group'
-	    sh 'npm set strict-ssl false
+	    sh 'npm set strict-ssl false'
             sh 'npm install'
             sh 'rm -rf teste-build.tgz > /dev/null 2>&1'
             //sh 'tar czvf teste-build.tgz * --exclude node_modules'
