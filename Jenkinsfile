@@ -18,6 +18,8 @@
             sh 'npm test'
 	    sh 'rm -rf node_modules > /dev/null 2>&1'
 	    sh 'tar czvf teste-build.tgz *'
+	    sh 'Entrando no sleep'
+	    sh 'sleep 120'
         }
         /*stage ('Code Quality'){
             def sonar = load 'sonar.groovy'
