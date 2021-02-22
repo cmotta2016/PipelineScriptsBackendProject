@@ -10,12 +10,14 @@
 	    sh 'npm set strict-ssl false'
             sh 'npm install'
             sh 'rm -rf teste-build.tgz > /dev/null 2>&1'
-            sh 'tar czvf --exclude node_modules teste-build.tgz *'
+            //sh 'tar czvf --exclude node_modules teste-build.tgz *'
             //sh 'tar czvf teste-build.tgz *'
         }
         stage('Test'){
 	    sh 'rm -rf /tmp/workspace/Openshift/Nodejs/report/*'
             sh 'npm test'
+	    sh 'rm -rf node_modules > /dev/null 2>&1'
+	    sh 'tar czvf teste-build.tgz *'
         }
         /*stage ('Code Quality'){
             def sonar = load 'sonar.groovy'
