@@ -21,7 +21,7 @@
 	    sh 'echo "Entrando no sleep"'
 	    sh 'sleep 120'
         }
-        /*stage ('Code Quality'){
+        stage ('Code Quality'){
             def sonar = load 'sonar.groovy'
             sonar.codeQuality()
         }
@@ -33,7 +33,7 @@
                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 }
             }
-        }*/
+        }
         /*stage('Dependency Check'){
            sh 'oc create -f depcheck_job_scan.yaml'
            sh 'sleep 10'
@@ -56,7 +56,7 @@
 		}//else
               }//stage
             }//withProject*/
-            openshift.withProject("${PROJECT}-qa") {
+            /*openshift.withProject("${PROJECT}-qa") {
                 stage('Build'){
                     if (!openshift.selector("bc", "${NAME}").exists()) {
 			echo "Creating ConfigMap for npmrc"
@@ -99,7 +99,7 @@
                     def dc = openshift.selector("dc", "${NAME}")
                     dc.rollout().status()
                 }//stage
-            }//withProject
+            }//withProject*/
         }//withCluster
     }//node
 //}//timestamps
