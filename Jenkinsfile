@@ -6,7 +6,7 @@
         }
         stage('Compile'){
             //sh 'npm set registry http://cicdtools.oracle.msdigital.pro:8081/repository/npm-group'
-	    sh 'npm set registry https://nexus-repository-manager:8081/repository/npm-group'
+	    sh 'npm set registry http://nexus-repository-manager:8081/repository/npm-group'
 	    sh 'npm set strict-ssl false'
             sh 'npm install'
             sh 'rm -rf teste-build.tgz > /dev/null 2>&1'
