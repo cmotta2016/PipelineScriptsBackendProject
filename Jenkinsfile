@@ -1,5 +1,5 @@
 //timestamps{
-    node('nodejs'){
+    node('nodejs-oc'){
         stage('Checkout'){
             //checkout([$class: 'GitSCM', branches: [[name: '*/openshift']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/cmotta2016/PipelineScriptsBackendProject.git']]])
             checkout scm
