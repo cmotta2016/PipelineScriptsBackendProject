@@ -1,6 +1,6 @@
 ## Using Chart
 
-Add repo
+Add repo:
 ```
 helm repo add wae-consumer https://cmotta2016.github.io/PipelineScriptsBackendProject
 ```
